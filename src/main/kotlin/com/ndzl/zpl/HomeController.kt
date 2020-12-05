@@ -19,7 +19,7 @@ class HomeController : HttpServlet() {
         res.contentType = "application/json"
         var localCode = req?.getParameter("code")
         if (localCode != null) {
-            ZPLSupportFunctions.logLocally("ANNOTATED-ZPL::HomeController::doPost reqBody=$localCode")
+            ZPLSupportFunctions.logLocally("ANNOTATED-ZPL::HomeController::doGet reqBody=$localCode")
 
             if(localCode.startsWith("^A"))
                 localCode = "^A "+localCode.substring(2)
