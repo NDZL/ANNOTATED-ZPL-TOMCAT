@@ -19,6 +19,8 @@ class HomeController : HttpServlet() {
         res.contentType = "application/json"
         var localCode = req?.getParameter("code")
         if (localCode != null) {
+            ZPLSupportFunctions.logLocally("ANNOTATED-ZPL::HomeController::doPost reqBody=$localCode")
+
             if(localCode.startsWith("^A"))
                 localCode = "^A "+localCode.substring(2)
 
@@ -47,8 +49,10 @@ class HomeController : HttpServlet() {
         res?.contentType = "application/json"
 
         var localCode = extractPostRequestBody(req)
-        //_sc?.log("ANNOTATED-ZPL::HomeController::reqBody="+localCode)
+        //_sc?.log("ANNOTATED-ZPL::HomeController::doPost reqBody="+localCode)
+
         if (localCode != null) {
+            ZPLSupportFunctions.logLocally("ANNOTATED-ZPL::HomeController::doPost reqBody=$localCode")
             if(localCode.startsWith("^A"))
                 localCode = "^A "+localCode.substring(2)
 

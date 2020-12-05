@@ -1,9 +1,19 @@
 package com.ndzl.zpl
 
+import com.ndzl.zpl.ZPLSupportFunctions.lookupThenBuildTutorial
 import java.io.File
+import java.io.IOException
+import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
+import java.nio.file.StandardOpenOption
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.ZoneOffset
 import java.util.*
+import java.util.Locale
+
 
 object ZPLSupportFunctions {
 
@@ -11,9 +21,22 @@ object ZPLSupportFunctions {
 
     val zpl2_all_raw_cmds = zpl2_raw_Lines.map { s -> s.substring(0, 3) }
 
-    fun readFileAsLinesUsingUseLines(fileName: String): List<String> = File(fileName).useLines { it.toList() }  //ndzl-03dic2020-as a replacement of spring framework
+    fun getTimeStamp(): String {
+        val sdf2 = SimpleDateFormat("yyyy-MMM-dd HH:mm:ss zzz", Locale.ITALY)
+        return "" + sdf2.format(Date.from(LocalDateTime.now().atZone(ZoneOffset.UTC).withZoneSameInstant(ZoneId.of("CET")).toInstant()))
+    }
+
+    @Throws(IOException::class)
+    fun logLocally(tbw: String) {
+        val path = Paths.get("/var/www/vhosts/cxnt48.com/docs/local_log.txt")
+        //val path = Paths.get("/Users/n.dzl/Downloads/local_log.txt")
+        Files.write(path, (getTimeStamp() + " "+ tbw+"\n").toByteArray(), StandardOpenOption.APPEND)
+    }
+
+    fun readFileAsLinesUsingUseLines(fileName: String): List<String> = File(fileName).useLines { /*println("-->calling readFileAsLinesUsingUseLines"); */logLocally("-->calling ZPLSupportFunctions::readFileAsLinesUsingUseLines"); it.toList() }  //ndzl-03dic2020-as a replacement of spring framework
 
     val txtzplpath: Path = Paths.get("/var/www/vhosts/cxnt48.com/docs/citi_zpl.txt")
+    //val txtzplpath: Path = Paths.get("/Users/n.dzl/IdeaProjects/Annotated-ZPL-TomcatKotlin/target/classes/citi_zpl.txt")
 
     val lines = readFileAsLinesUsingUseLines(txtzplpath.toString())
 
@@ -58,7 +81,7 @@ object ZPLSupportFunctions {
     val cmdParams = zplCmdFormats.map { s -> s.substring(3).split(",", ":", ".") }
 
     data class AnnotatedZPLCommand(val command: String, val shortExplanation: String, val longDescription: String, val formalParamsListTxt: String, val params: List<String>)
-
+/*
     fun Map<String, AnnotatedZPLCommand>.lookupThenReturnString(cmdAndParamsToExplain: String): String {
         val passedParams = when (cmdAndParamsToExplain.substring(3).length) {
             0 -> emptyList()
@@ -87,7 +110,7 @@ object ZPLSupportFunctions {
         }
         return sb.toString()
     }
-
+*/
     fun Map<String, AnnotatedZPLCommand>.lookupThenBuildTutorial(cmdAndParamsToExplain: String): String {
         val localCmd = this[cmdAndParamsToExplain.substring(0, 3)]?.command
         val localShortExpl = this[localCmd]?.shortExplanation
@@ -103,8 +126,8 @@ object ZPLSupportFunctions {
 
             sb.appendLine(zpl2SimpleExpl)
         } else {
-            sb.appendLine("ZPL command: " + localCmd)
-            sb.appendLine("MEANING: " + localShortExpl)
+            sb.appendLine("ZPL command: $localCmd")
+            sb.appendLine("MEANING: $localShortExpl")
             sb.appendLine("PARAMS: " + this[localCmd]?.formalParamsListTxt)
             sb.appendLine("DESCRIPTION: " + this[localCmd]?.longDescription)
         }
@@ -127,8 +150,14 @@ object ZPLSupportFunctions {
                         pte
                 )
             }.toMap()
-
 }
 
-fun main(/*args: Array<String>*/){
+
+
+fun main(args: Array<String>){
+    println("BEGIN AND WAITING FOR USER INPUT")  // objExplanation GETS VALUED JUST ONCE, THE FIRST TIME IT IS USED.
+    //val inputText1 = readLine()
+    //println("USER INPUT WAS <{$inputText1}>")
+    println(ZPLSupportFunctions.objExplanation.lookupThenBuildTutorial("^JW"))
+    println(ZPLSupportFunctions.objExplanation.lookupThenBuildTutorial("~WQ"))
 }
