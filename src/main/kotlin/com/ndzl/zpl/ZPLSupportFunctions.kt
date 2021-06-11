@@ -28,14 +28,14 @@ object ZPLSupportFunctions {
 
     @Throws(IOException::class)
     fun logLocally(tbw: String) {
-        val path = Paths.get("/var/www/vhosts/cxnt48.com/docs/local_log.txt")
+        val path = Paths.get("/chroot/home/cxntcom/cxnt48.com/local_log.txt")
         //val path = Paths.get("/Users/n.dzl/Downloads/local_log.txt")
         Files.write(path, (getTimeStamp() + " "+ tbw+"\n").toByteArray(), StandardOpenOption.APPEND)
     }
 
     fun readFileAsLinesUsingUseLines(fileName: String): List<String> = File(fileName).useLines { /*println("-->calling readFileAsLinesUsingUseLines"); */logLocally("-->calling ZPLSupportFunctions::readFileAsLinesUsingUseLines"); it.toList() }  //ndzl-03dic2020-as a replacement of spring framework
 
-    val txtzplpath: Path = Paths.get("/var/www/vhosts/cxnt48.com/docs/citi_zpl.txt")
+    val txtzplpath: Path = Paths.get("/chroot/home/cxntcom/cxnt48.com/citi_zpl.txt")
     //val txtzplpath: Path = Paths.get("/Users/n.dzl/IdeaProjects/Annotated-ZPL-TomcatKotlin/target/classes/citi_zpl.txt")
 
     val lines = readFileAsLinesUsingUseLines(txtzplpath.toString())

@@ -10,7 +10,13 @@ import javax.servlet.http.HttpServletResponse
 
 //funziona su fenix, 4 dic 2020
 //jar kotlin in httpdocs/WEB-INF/lib
-//txt file con descrizione zpl in /var/www/vhosts/cxnt48.com/docs/
+//txt file con descrizione zpl in 2020: /var/ www/vhosts/cxnt48.com/docs/   opp   2021:/chroot/home/cxntcom/cxnt48.com/
+
+/*DEPLOY DI QUESTO PROGETTO 11.06.2021
+* QUESTO NON è UN PROGETTO J2EE / TOMCAT
+* GENERA UNICAMENTE I .CLASS DA COPIARE DENTRO UN PROGETTO VUOTO /zpl
+* ad es. da Eclipse con WAR si può creare alberatura per /zpl e poi sostituire .class
+* */
 
 @WebServlet("/zpl")
 class HomeController : HttpServlet() {

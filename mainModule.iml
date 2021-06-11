@@ -6,6 +6,8 @@
         <compilerSettings />
         <compilerArguments>
           <option name="jvmTarget" value="1.8" />
+          <option name="languageVersion" value="1.4" />
+          <option name="apiVersion" value="1.4" />
           <option name="pluginOptions">
             <array />
           </option>
@@ -31,11 +33,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="org.apache.tomcat.maven:tomcat7-maven-plugin:2.2" level="project" />
     <orderEntry type="library" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.20" level="project" />
     <orderEntry type="library" name="Maven: org.jetbrains.kotlin:kotlin-stdlib:1.4.20" level="project" />
     <orderEntry type="library" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-common:1.4.20" level="project" />
     <orderEntry type="library" name="Maven: org.jetbrains:annotations:13.0" level="project" />
     <orderEntry type="library" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.20" level="project" />
-    <orderEntry type="library" name="org.apache.tomcat.maven:tomcat7-maven-plugin:2.2" level="project" />
   </component>
 </module>

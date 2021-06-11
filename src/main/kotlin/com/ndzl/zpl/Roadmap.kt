@@ -3,7 +3,7 @@ package com.ndzl.zpl
 
 
 import com.ndzl.zpl.Roadmap.lookupThenBuildJSON
-import com.ndzl.zpl.Roadmap.lookupThenBuildTutorial
+
 import com.ndzl.zpl.Roadmap.objExplanation
 import java.io.File
 import java.io.IOException
@@ -98,7 +98,7 @@ object Roadmap {
 
     data class AnnotatedZPLCommand(val command: String, val shortExplanation: String, val longDescription: String, val formalParamsListTxt: String, val params: List<String>)
 
-    fun Map<String, AnnotatedZPLCommand>.lookupThenBuildTutorial(cmdAndParamsToExplain: String): String {
+ /*   fun Map<String, AnnotatedZPLCommand>.lookupThenBuildTutorial(cmdAndParamsToExplain: String): String {
         val localCmd = this[cmdAndParamsToExplain.substring(0, 3)]?.command
         val localShortExpl = this[localCmd]?.shortExplanation
 
@@ -121,7 +121,7 @@ object Roadmap {
         return sb.toString()
     }
 
-
+*/
 
     fun Map<String, AnnotatedZPLCommand>.lookupThenBuildJSON(cmdAndParamsToExplain: String): String {
         val localCmd = this[cmdAndParamsToExplain.substring(0, 3)]?.command
