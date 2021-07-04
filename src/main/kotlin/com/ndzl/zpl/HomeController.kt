@@ -15,7 +15,11 @@ import javax.servlet.http.HttpServletResponse
 /*DEPLOY DI QUESTO PROGETTO 11.06.2021
 * QUESTO NON è UN PROGETTO J2EE / TOMCAT
 * GENERA UNICAMENTE I .CLASS DA COPIARE DENTRO UN PROGETTO VUOTO /zpl
-* ad es. da Eclipse con WAR si può creare alberatura per /zpl e poi sostituire .class
+* ad es. da Eclipse con WAR si può creare alberatura per /zpl e poi sostituire .class in /cxnt48.com/apache-tomcat-9.0.46/webapps/ROOT/WEB-INF/classes/com/ndzl/zpl
+* i jar KOTLIN vanno copiati in /cxnt48.com/apache-tomcat-9.0.46/webapps/ROOT/WEB-INF/lib
+* i jar kotlin sono
+* annotations-13.0.jar; javax.json.jar; kotlin-stdlib-1.4.20.jar; kotlin-stdlib-common-1.4.20.jar; kotlin-stdlib-jdk8-1.4.20.jar
+* presenti in un backup del server FENIX
 * */
 
 @WebServlet("/zpl")
